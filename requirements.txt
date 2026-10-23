@@ -1,0 +1,12 @@
+# PyTorch 由基础镜像提供，这里只补服务依赖。
+numpy>=1.26,<3
+Pillow>=10,<13
+timm>=0.9.2,<2
+omegaconf>=2.3,<3
+einops>=0.7,<1
+easydict>=1.9,<2
+loguru>=0.7,<1
+grpcio>=1.60,<2
+grpcio-tools>=1.60,<2
+protobuf>=5.29,<7
+gdown>=5,<6

@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package copynce_descriptor;
+
+option go_package = "./pb";
+
+enum Code {
+  CODE_OK                  = 0;
+  CODE_INTERNAL_ERROR      = 1;
+  CODE_EMPTY_FRAME         = 2;
+  CODE_DECODE_FAILED       = 3;
+  CODE_NO_FRAMES           = 4;
+}
+
+// 与 SSCD ExtractEmbeddings 字段对齐，但服务名独立，避免和 SSCD 混淆。
+service CopyNCEDescriptorService {
+  rpc ExtractEmbeddings(ExtractRequest) returns (ExtractResponse);
+}
+
+message FrameData {
+  int64 frame_id = 1;
+  bytes data     = 2;
+}
+
+message ExtractRequest {
+  repeated FrameData frames = 1;
+}
+
+message FrameEmbedding {
+  int64  frame_id = 1;
+  Code   code     = 2;
+  string error    = 3;
+  repeated float values = 4;
+}
+
+message ExtractResponse {
+  Code   code             = 1;
+  string error            = 2;
+  repeated FrameEmbedding results = 3;
+}

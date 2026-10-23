@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+.weights_tmp/
+weights/**
+!weights/.gitkeep
+third_party/CopyNCE/
+proto/__pycache__/
+*.tar
+*.ckpt
+.env
+
