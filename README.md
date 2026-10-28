@@ -14,10 +14,10 @@
 
 | 角色 | 端口 |
 |------|------|
-| nginx 入口 | **59890** |
-| desc1 / GPU0 | 59891 |
-| desc2 / GPU1 | 59892 |
-| desc3 / GPU2 | 59893 |
+| nginx 入口 | **49890** |
+| desc1 / GPU0 | 49891 |
+| desc2 / GPU1 | 49892 |
+| desc3 / GPU2 | 49893 |
 
 ## 目录
 
@@ -49,6 +49,16 @@ cp -n ../model_test/data/weights/descriptor_vits_224.pth.tar weights/ \
 
 ## 启动
 
+一键启停（启动时会先停 AnyPattern，避免抢 GPU）：
+
+```bash
+./scripts/start.sh
+./scripts/stop.sh
+# 或在 zsn/ 下：../switch_feature_service.sh copynce|anypattern|stop|status
+```
+
+手动：
+
 ```bash
 docker compose build
 docker compose up -d
@@ -59,13 +69,13 @@ docker compose ps
 
 ```bash
 docker compose up -d desc1
-python client.py --server localhost:59891 /path/to/a.jpg
+python client.py --server localhost:49891 /path/to/a.jpg
 ```
 
 经 nginx：
 
 ```bash
-python client.py --server localhost:59890 /path/to/a.jpg /path/to/b.jpg
+python client.py --server localhost:49890 /path/to/a.jpg /path/to/b.jpg
 ```
 
 ## 下游向量库
@@ -76,7 +86,7 @@ python client.py --server localhost:59890 /path/to/a.jpg /path/to/b.jpg
 
 | | SSCD | CopyNCE Descriptor |
 |--|------|-------------------|
-| 入口 | :59990 | :59890 |
+| 入口 | :59990 | :49890 |
 | proto | `sscd.SSCDService` | `copynce_descriptor.CopyNCEDescriptorService` |
 | RPC | ExtractEmbeddings | ExtractEmbeddings（字段对齐） |
 | 镜像 | sscdrec:mask | copynce-descriptor:latest |

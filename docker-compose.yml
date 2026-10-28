@@ -1,5 +1,5 @@
 # CopyNCE Descriptor：平行于 SSCD 的多副本 gRPC 拓扑（独立端口，不共用 nginx）。
-# SSCD 占用 59990/59991+；本服务使用 59890/59891+。
+# SSCD 占用 59990/59991+；本服务使用 49890/49891+。
 # Matcher 不在此部署。
 
 services:
@@ -8,7 +8,7 @@ services:
     image: copynce-descriptor:latest
     restart: always
     ports:
-      - "59891:50051"
+      - "49891:50051"
     environment:
       - COPYNCE_WEIGHTS=/weights/descriptor_vits_224.pth.tar
       - COPYNCE_DEVICE=cuda:0
@@ -35,7 +35,7 @@ services:
     image: copynce-descriptor:latest
     restart: always
     ports:
-      - "59892:50051"
+      - "49892:50051"
     environment:
       - COPYNCE_WEIGHTS=/weights/descriptor_vits_224.pth.tar
       - COPYNCE_DEVICE=cuda:0
@@ -62,7 +62,7 @@ services:
     image: copynce-descriptor:latest
     restart: always
     ports:
-      - "59893:50051"
+      - "49893:50051"
     environment:
       - COPYNCE_WEIGHTS=/weights/descriptor_vits_224.pth.tar
       - COPYNCE_DEVICE=cuda:0
@@ -92,7 +92,7 @@ services:
       - desc2
       - desc3
     ports:
-      - "59890:59890"
+      - "49890:49890"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     logging:

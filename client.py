@@ -47,8 +47,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="CopyNCE Descriptor gRPC client")
     parser.add_argument(
         "--server",
-        default="localhost:59890",
-        help="gRPC 地址（nginx 默认 localhost:59890；单副本 localhost:59891）",
+        default="localhost:49890",
+        help="gRPC 地址（nginx 默认 localhost:49890；单副本 localhost:49891）",
     )
     parser.add_argument("images", nargs="+", help="图片路径")
     args = parser.parse_args()
